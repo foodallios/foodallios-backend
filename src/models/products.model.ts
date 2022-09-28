@@ -1,25 +1,29 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+
 @Entity()
-export class Users {
+export class Products {
 
     @PrimaryGeneratedColumn()
     id: string;
 
     @Column()
-    username: string;
+    shopId: string;
 
     @Column()
-    password: string;
+    title: string;
 
     @Column()
-    email: string;
+    category: string;
 
     @Column()
-    role: "CUSTOMER" | "OWNER" | "ADMIN";
+    quantity: string;
 
     @Column()
-    active: boolean = true;
+    price: number;
+
+    @Column()
+    description: string;
 
     @Column()
     createdBy: string = 'admin';
