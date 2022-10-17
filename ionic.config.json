@@ -1,0 +1,7 @@
+{
+  "name": "foodallios-backend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

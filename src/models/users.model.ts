@@ -3,27 +3,27 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Users {
 
-    @PrimaryGeneratedColumn()
-    id: string;
+    @PrimaryGeneratedColumn("uuid")
+    id?: string;
+
+    @Column({ select: false, unique: true })
+    username?: string;
+
+    @Column({ length: 50 })
+    password?: string;
+
+    @Column({ unique: true })
+    email?: string;
 
     @Column()
-    username: string;
+    role?: "CUSTOMER" | "OWNER" | "ADMIN";
 
     @Column()
-    password: string;
+    active?: boolean = true;
 
     @Column()
-    email: string;
+    createdBy?: string = 'admin';
 
     @Column()
-    role: "CUSTOMER" | "OWNER" | "ADMIN";
-
-    @Column()
-    active: boolean = true;
-
-    @Column()
-    createdBy: string = 'admin';
-
-    @Column()
-    createdAt: Date = new Date();
+    createdAt?: Date = new Date();
 }

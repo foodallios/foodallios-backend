@@ -1,14 +1,19 @@
 import { Controller, Get } from '@nestjs/common';
-import { UsersService } from 'src/services/users/users.service';
+import { UsersService } from 'src/modules/users/users.service';
 
 @Controller('users')
 export class UsersController {
 
-    constructor(private userService: UsersService) {}
+    constructor(private usersService: UsersService) {}
 
     @Get()
     getUsers() {
         console.log("Lose myself tonight")
-        return "Hello Users"
+        return this.usersService.getAllUsers();
+    }
+
+    async testORM(username: string): Promise<any> {
+        const user = await this.usersService.findDbOne(username);
+        return user;
     }
 }
