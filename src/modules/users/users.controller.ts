@@ -15,8 +15,8 @@ export class UsersController {
         return this.usersService.getAllUsers();
     }
 
-    @Get('orm')
-    async testORM(username: string): Promise<any> {
+    @Get(':username')
+    async testORM(@Param("username") username: string): Promise<Users> {
         const user = await this.usersService.findUserByUsername(username);
         return user;
     }
