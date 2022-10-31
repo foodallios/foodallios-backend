@@ -3,10 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthService } from './modules/auth/auth.service';
-import { UsersModule } from './modules/users/users.module';
 import { UsersService } from './modules/users/users.service';
-import { CustomersModule } from './modules/customers/customers.module';
-import { ShopsModule } from './modules/shops/shops.module';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm'
 import { Users } from './models/users.model';
 import { Shops } from './models/shops.model';
@@ -15,13 +12,12 @@ import { Customers } from './models/customers.model';
 import { Products } from './models/products.model';
 import { JwtService } from '@nestjs/jwt';
 import { UsersController } from './modules/users/users.controller';
+import { ShopsService } from './modules/shops/shops.service';
+import { ShopsController } from './modules/shops/shops.controller';
 
 @Module({
   imports: [
     AuthModule,
-    UsersModule,
-    CustomersModule,
-    ShopsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -42,11 +38,13 @@ import { UsersController } from './modules/users/users.controller';
   controllers: [
     AppController, 
     UsersController,
+    ShopsController
   ],
   providers: [
     AppService,
     AuthService,
     UsersService,
+    ShopsService,
     JwtService
   ],
 })

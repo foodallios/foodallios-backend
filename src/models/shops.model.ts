@@ -3,11 +3,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Shops {
     
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column()
-    ownerId: string;
+    @Column({ unique: true })
+    name: string;
 
     @Column()
     address: string;
