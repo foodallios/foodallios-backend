@@ -13,7 +13,7 @@ export class AuthService {
     ) { }
 
     async validateEntity(username: string, pass: string): Promise<any> {
-        const user = await this.usersService.findDbOne(username);
+        const user = await this.usersService.findUserByUsername(username);
         if (user && user.password === pass) {
             const { password, ...result } = user;
             return result;
@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     async testORM(username: string): Promise<any> {
-        const user = await this.usersService.findDbOne(username);
+        const user = await this.usersService.findUserByUsername(username);
         return user;
     }
 }
