@@ -1,0 +1,1 @@
+INSERT INTO shop_owner("userId", "shopId", "createdBy", "createdAt") VALUES ('2526220e-5980-42b3-bbf8-d0308466aa80', '71b4d2db-fb1d-4699-9106-3aacd95f6ba9', 'admin', '10/31/2022');
