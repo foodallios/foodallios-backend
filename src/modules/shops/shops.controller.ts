@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Request } from '@nestjs/common';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Param } from '@nestjs/common/decorators/http/route-params.decorator';
 import { Shops } from 'src/models/shops.model';
@@ -15,7 +15,8 @@ export class ShopsController {
     }
 
     @Get(':shopId')
-    getShopByName(@Param("shopId") id: string): Promise<Shops | undefined> {
+    getShopByName(@Param("shopId") id: string, @Request() req): Promise<Shops | undefined> {
+        console.log(req.headers)
         return this.shopService.getShopById(id);
     }
 }

@@ -14,6 +14,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersController } from './modules/users/users.controller';
 import { ShopsService } from './modules/shops/shops.service';
 import { ShopsController } from './modules/shops/shops.controller';
+import { AuthController } from './modules/auth/auth.controller';
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { ShopsController } from './modules/shops/shops.controller';
   controllers: [
     AppController, 
     UsersController,
-    ShopsController
+    ShopsController,
+    AuthController
   ],
   providers: [
     AppService,

@@ -1,37 +1,73 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { jwtConstants } from 'src/modules/auth/constants';
+import { createUserDto } from 'src/dto/users/createUserDto';
+import { loginUserDto } from 'src/dto/users/loginUserDto';
+import { Users } from 'src/models/users.model';
+import { jwtConstants } from 'src/modules/auth/jwt/constants';
 import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
 
-    constructor
-        (
-            private usersService: UsersService,
-            private jwtService: JwtService
+  constructor
+    (
+      private usersService: UsersService,
+      private jwtService: JwtService
     ) { }
 
-    async validateEntity(username: string, pass: string): Promise<any> {
-        const user = await this.usersService.findUserByUsername(username);
-        if (user && user.password === pass) {
-            const { password, ...result } = user;
-            return result;
-        }
-        else {
-            return UnauthorizedException;
-        }
-    }
+  //edw einai to swsto prepei na ginei implement sti validate 
+  async login(user: loginUserDto) {
+
+    // const validUser = await this.validateUser(user);
+    // if (!validUser) {
+    //   throw new NotFoundException(`${user.email} does not exist`);
+
+    // }
     
-    async login(user: any) {
-        const payload = { username: user.username, sub: user.userId };
-        return {
-            access_token: this.jwtService.sign(payload, jwtConstants),
-        };
+    // const passwordValid = await this.validatePassword(user, validUser)
+
+    // if(!passwordValid) {
+    //   throw new Error("Invalid Password");
+    // }
+
+    return {
+      access_token: this.jwtService.sign({ username: user.email, password: user.password }, jwtConstants),
+    };
+  }
+
+  async register(input: createUserDto): Promise<Users> {
+
+    const found = this.usersService.findUserByUsername(input.email);
+    if (found) {
+      throw new BadRequestException(`Cannot register with email ${input.email}`)
+
     }
 
-    async testORM(username: string): Promise<any> {
-        const user = await this.usersService.findUserByUsername(username);
-        return user;
+    const reg_user = await this.usersService.createUser(input)
+
+    return reg_user;
+  }
+
+  async validateUser(username: string): Promise<Users> {
+    const validUser = await this.usersService.findUserByUsername(username);
+
+    if (!validUser) {
+      throw new NotFoundException(`${username} does not exist`);
     }
+
+    //console.log(user)
+    return validUser;
+
+  }
+
+  async validatePassword(password: string, validUser: Users): Promise<Users> {
+
+    
+    if (password === validUser.password ? false : true) {
+      throw new Error("Invalid Password");
+    }
+
+    return validUser;
+  }
+
 }

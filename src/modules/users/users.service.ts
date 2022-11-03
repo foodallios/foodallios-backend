@@ -16,17 +16,32 @@ export class UsersService {
         return this.usersRepository.find();
     }
 
+
+
     async findUserByUsername(username: string): Promise<Users | undefined> {
-        let en = this.usersRepository.findOne({ where: { username: username }})
-        console.log((await en).email)
-        return en;
+        let user = this.usersRepository.findOne({ where: { username: username }})
+        //console.log((await user))
+        if(!user) {
+            return undefined;
+        } 
+        return user;
     }
 
-    async findUserById(id: string): Promise<Users | undefined> {
-        let en = this.usersRepository.findOne({ where: { id: id }})
-        console.log((await en))
-        return en;
-    }
+    // async findUserByEmail(email: string): Promise<Users | undefined> {
+    //     let user = this.usersRepository.findOne({ where: { email: email }})
+    //     //console.log((await user))
+    //     if(!user) {
+    //         return undefined;
+    //     } 
+    //     return user;
+    // }
+
+
+    // async findUserById(id: string): Promise<Users | undefined> {
+    //     let en = this.usersRepository.findOne({ where: { id: id }})
+    //     console.log((await en))
+    //     return en;
+    // }
 
     async createUser(userDetails: createUserDto): Promise<any> {
         const new_user = await this.usersRepository.insert({
