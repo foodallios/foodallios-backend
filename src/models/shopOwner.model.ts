@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: 'shopOwner' })
+@Entity({ name: 'shop_owner' })
 export class ShopOwner extends BaseEntity {
 
     @PrimaryGeneratedColumn("uuid")
