@@ -1,11 +1,11 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { Body, Post, UseGuards } from '@nestjs/common/decorators';
 import { createUserDto } from 'src/dto/users/createUserDto';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { Users } from 'src/models/users.model';
 import { UsersService } from 'src/modules/users/users.service';
 
-@UseGuards(JwtAuthGuard)
+//@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
 
@@ -20,6 +20,11 @@ export class UsersController {
     @Get(':username')
     async testORM(@Param("username") username: string): Promise<Users> {
         const user = await this.usersService.findUserByUsername(username);
+        if(!user) {
+            throw new NotFoundException(
+                `User ${username} is not found.`
+            );
+        } 
         return user;
     }
 
@@ -31,7 +36,7 @@ export class UsersController {
     // }
 
     @Post('new')
-    async createNewUser(@Body() jsbody: createUserDto) {
+    async createNewUser(@Body() jsbody: createUserDto): Promise<Users | undefined> {
         return this.usersService.createUser(jsbody);
     }
 }

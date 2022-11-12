@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createUserDto } from 'src/dto/users/createUserDto';
 import { Users } from 'src/models/users.model';
@@ -20,10 +20,7 @@ export class UsersService {
 
     async findUserByUsername(username: string): Promise<Users | undefined> {
         let user = this.usersRepository.findOne({ where: { username: username }})
-        //console.log((await user))
-        if(!user) {
-            return undefined;
-        } 
+
         return user;
     }
 
@@ -49,9 +46,9 @@ export class UsersService {
             password: userDetails.password,
             email: userDetails.email,
             role: userDetails.role,
-            active: userDetails.active,
+            active: true,
             createdBy: userDetails.createdBy,
-            createdAt: userDetails.createdAt,
+            createdAt: userDetails.createdAt
         })
         
         return new_user;

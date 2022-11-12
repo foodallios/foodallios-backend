@@ -25,5 +25,5 @@ export class Users extends BaseEntity {
     createdBy?: string = 'admin';
 
     @Column()
-    createdAt?: Date = new Date();
+    createdAt?: Date;
 }
