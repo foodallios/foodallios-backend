@@ -6,10 +6,10 @@ import { AuthService } from './modules/auth/auth.service';
 import { UsersService } from './modules/users/users.service';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm'
 import { Users } from './models/users.model';
-import { Shops } from './models/shops.model';
+import { Shop } from './models/shops.model';
 import { ShopOwner } from './models/shopOwner.model';
 import { Customers } from './models/customers.model';
-import { Products } from './models/products.model';
+import { Product } from './models/products.model';
 import { JwtService } from '@nestjs/jwt';
 import { UsersController } from './modules/users/users.controller';
 import { ShopsService } from './modules/shops/shops.service';
@@ -31,10 +31,10 @@ import { AuthController } from './modules/auth/auth.controller';
     }),
     TypeOrmModule.forFeature([
       Users,
-      Shops,
+      Shop,
       ShopOwner,
       Customers,
-      Products
+      Product
     ])],
   controllers: [
     AppController, 
