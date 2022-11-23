@@ -1,4 +1,6 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Shop } from "./shops.model";
+import { TableOrder } from "./tableOrders.model";
 
 
 @Entity({ name: 'product' })
@@ -30,4 +32,10 @@ export class Product extends BaseEntity {
 
     @Column()
     createdAt: Date = new Date();
+
+    @ManyToOne(() => Shop, (shop) => shop.product)
+    shop: Shop;
+
+    @OneToMany(() => TableOrder, tableOrder => tableOrder.product)
+    tableOrder: TableOrder[];
 }
