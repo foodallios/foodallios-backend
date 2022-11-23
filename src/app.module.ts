@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthService } from './modules/auth/auth.service';
 import { UsersService } from './modules/users/users.service';
-import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm'
 import { Users } from './models/users.model';
 import { Shop } from './models/shops.model';
 import { ShopOwner } from './models/shopOwner.model';
@@ -15,6 +15,18 @@ import { UsersController } from './modules/users/users.controller';
 import { ShopsService } from './modules/shops/shops.service';
 import { ShopsController } from './modules/shops/shops.controller';
 import { AuthController } from './modules/auth/auth.controller';
+import { ProductsService } from './modules/products/products.service';
+import { ProductsController } from './modules/products/products.controller';
+import { TableOrder } from './models/tableOrders.model';
+import { TableOrderController } from './modules/table_order/table_order.controller';
+import { TableOrderService } from './modules/table_order/table_order.service';
+import { PurchasesController } from './modules/purchases/purchases.controller';
+import { PurchasesService } from './modules/purchases/purchases.service';
+import { Purchase } from './models/purchases.model';
+import { ShopOwnerController } from './modules/shop_owner/shop_owner.controller';
+import { ShopOwnerService } from './modules/shop_owner/shop_owner.service';
+import { CustomersController } from './modules/customers/customers.controller';
+import { CustomersService } from './modules/customers/customers.service';
 
 @Module({
   imports: [
@@ -25,29 +37,43 @@ import { AuthController } from './modules/auth/auth.controller';
       port: 5432,
       username: 'postgres',
       password: 'password',
-      database: 'foodallios-db',
+      database: 'foodallios',
       entities: [__dirname + '/**/*.model{.ts,.js}'],
-      synchronize: true
+      synchronize: true,
+      logging: true
     }),
     TypeOrmModule.forFeature([
       Users,
       Shop,
       ShopOwner,
       Customers,
-      Product
-    ])],
+      Product,
+      TableOrder,
+      Purchase
+    ]),
+  ],
   controllers: [
-    AppController, 
+    AppController,
+    CustomersController,
     UsersController,
     ShopsController,
-    AuthController
+    ProductsController,
+    AuthController,
+    TableOrderController,
+    PurchasesController,
+    ShopOwnerController
   ],
   providers: [
     AppService,
+    CustomersService,
     AuthService,
     UsersService,
     ShopsService,
-    JwtService
+    ProductsService,
+    JwtService,
+    TableOrderService,
+    PurchasesService,
+    ShopOwnerService
   ],
 })
 export class AppModule { }
