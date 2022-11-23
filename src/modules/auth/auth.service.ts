@@ -15,7 +15,6 @@ export class AuthService {
       private jwtService: JwtService
     ) { }
 
-  //edw einai to swsto prepei na ginei implement sti validate 
   async login(user: loginUserDto) {
 
     // const validUser = await this.validateUser(user);
@@ -37,17 +36,19 @@ export class AuthService {
 
   async register(input: createUserDto): Promise<Users> {
 
-    const found = this.usersService.findUserByUsername(input.email);
-    if (found) {
-      throw new BadRequestException(`Cannot register with email ${input.email}`)
+    // const found = this.usersService.findUserByUsername(input.username);
+    // if (found) {
+    //   throw new BadRequestException(`Cannot register '${input.username}'. User already exists.`)
 
-    }
+    // }
 
-    const reg_user = await this.usersService.createUser(input)
+    const reg_user = await this.usersService.createUser(input);
+
 
     return reg_user;
   }
 
+  //Check if username exists when user is Logging in
   async validateUser(username: string): Promise<Users> {
     const validUser = await this.usersService.findUserByUsername(username);
 

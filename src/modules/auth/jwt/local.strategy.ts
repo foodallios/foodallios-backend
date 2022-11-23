@@ -2,9 +2,6 @@ import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
-import { UsersService } from 'src/modules/users/users.service';
-import { JwtService } from '@nestjs/jwt';
-import { loginUserDto } from 'src/dto/users/loginUserDto';
 import { Users } from 'src/models/users.model';
 
 @Injectable()
@@ -16,6 +13,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         super();
     }
 
+    //Fix this. It is duplicating in both here and the service. Here put an if for calid user and pass to return the user.
     async validate(username: string, password: string): Promise<Users> {
 
         const validUser = await this.authService.validateUser(username);
