@@ -1,0 +1,2 @@
+INSERT INTO purchase("customerId", "totalPrice", "description", "isValid", "createdAt") VALUES('', 15, 'dummy thing', 'true', '11/19/2022'); 
+INSERT INTO purchase("customerId", "totalPrice", "description", "isValid", "createdAt") VALUES('d90bd85c-e7f1-4867-a85f-088602ce20d9', 0, '', 'true', '11/19/2022'); -- initialize purchase
