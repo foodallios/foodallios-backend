@@ -10,7 +10,7 @@ export class ShopsService {
     constructor(
         @InjectRepository(Shop) private shopRepository: Repository<Shop>,
         @InjectRepository(Product) private productRepository: Repository<Product>
-        ) {}
+    ) {}
 
     async getAllShops(): Promise<Shop[] | undefined> {
         return this.shopRepository.find();
@@ -21,8 +21,10 @@ export class ShopsService {
     }
 
     async getShopsProductList(id: string): Promise<Product[] | undefined> {
-        return this.productRepository.find({ where: { shopId: id}});
+        return this.productRepository.find({ where: { shopId: id }});
     }
 
-
+    async getShopProductById(shopId: string, productId: string): Promise<Product | undefined> {
+        return this.productRepository.findOne({ where: { shopId: shopId, id: productId} })
+    }
 }

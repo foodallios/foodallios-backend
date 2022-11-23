@@ -22,7 +22,12 @@ export class ShopsController {
 
     @Get(':shopId/product-list')
     getShopProductList(@Param("shopId") id: string): Promise<Product[] | undefined> {
-        return this.shopService.getShopsProductList(id)
+        return this.shopService.getShopsProductList(id);
+    }
+
+    @Get(':shopId/product-list/:productId')
+    getShopProductById(@Param("shopId") shopId: string, @Param("productId") productId: string): Promise<Product | undefined> {
+        return this.shopService.getShopProductById(shopId, productId);
     }
 
 }
