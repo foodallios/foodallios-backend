@@ -36,7 +36,7 @@ export class UsersController {
     // }
 
     @Post('new')
-    async createNewUser(@Body() jsbody: createUserDto): Promise<Users | undefined> {
-        return this.usersService.createUser(jsbody);
+    async createNewUser(@Body() jsbody: createUserDto, hsPs: string): Promise<Users | undefined> {
+        return this.usersService.createUser(jsbody, hsPs);
     }
 }

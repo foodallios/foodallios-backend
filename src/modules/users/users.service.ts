@@ -40,10 +40,11 @@ export class UsersService {
     //     return en;
     // }
 
-    async createUser(userDetails: createUserDto): Promise<any> {
+    async createUser(userDetails: createUserDto, hasPs: string): Promise<any> {
+
         const new_user = await this.usersRepository.insert({
             username: userDetails.username,
-            password: userDetails.password,
+            password: hasPs,
             email: userDetails.email,
             role: userDetails.role,
             active: true,
