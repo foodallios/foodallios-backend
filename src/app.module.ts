@@ -27,6 +27,8 @@ import { ShopOwnerController } from './modules/shop_owner/shop_owner.controller'
 import { ShopOwnerService } from './modules/shop_owner/shop_owner.service';
 import { CustomersController } from './modules/customers/customers.controller';
 import { CustomersService } from './modules/customers/customers.service';
+import { QrController } from './modules/qr/qr.controller';
+import { QrService } from './modules/qr/qr.service';
 
 @Module({
   imports: [
@@ -61,7 +63,8 @@ import { CustomersService } from './modules/customers/customers.service';
     AuthController,
     TableOrderController,
     PurchasesController,
-    ShopOwnerController
+    ShopOwnerController,
+    QrController
   ],
   providers: [
     AppService,
@@ -73,7 +76,8 @@ import { CustomersService } from './modules/customers/customers.service';
     JwtService,
     TableOrderService,
     PurchasesService,
-    ShopOwnerService
+    ShopOwnerService,
+    QrService
   ],
 })
 export class AppModule { }

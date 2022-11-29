@@ -5,6 +5,7 @@ import { loginUserDto } from 'src/dto/users/loginUserDto';
 import { Users } from 'src/models/users.model';
 import { jwtConstants } from 'src/modules/auth/jwt/constants';
 import { UsersService } from '../users/users.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,9 @@ export class AuthService {
     (
       private usersService: UsersService,
       private jwtService: JwtService
-    ) { }
+    ) 
+  { }
+
 
   async login(user: loginUserDto) {
 
@@ -42,7 +45,10 @@ export class AuthService {
 
     // }
 
-    const reg_user = await this.usersService.createUser(input);
+    const saltOrRound = 10;
+    const hash = await bcrypt.hash(input.password, saltOrRound);
+
+    const reg_user = await this.usersService.createUser(input, hash);
 
 
     return reg_user;
@@ -62,9 +68,10 @@ export class AuthService {
   }
 
   async validatePassword(password: string, validUser: Users): Promise<Users> {
-
     
-    if (password === validUser.password ? false : true) {
+    const isMatch = await bcrypt.compare(password, validUser.password);
+    
+    if (isMatch ? false : true) {
       throw new Error("Invalid Password");
     }
 

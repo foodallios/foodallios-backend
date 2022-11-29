@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { Users } from 'src/models/users.model';
+import { HttpStatus } from '@nestjs/common/enums';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -17,18 +18,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     async validate(username: string, password: string): Promise<Users> {
 
         const validUser = await this.authService.validateUser(username);
-        if (!validUser) {
-          throw new NotFoundException(`${username} does not exist`);
-    
-        }
 
         const passwordValid = await this.authService.validatePassword(password, validUser)
 
-        if(!passwordValid) {
-          throw new Error("Invalid Password");
+        if (validUser && passwordValid) {
+          return validUser
         }
-
-        return validUser;
+        throw Error(String(HttpStatus.I_AM_A_TEAPOT))
 
     }
 }
