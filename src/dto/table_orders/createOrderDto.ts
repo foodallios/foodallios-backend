@@ -5,7 +5,7 @@ import { Purchase } from "src/models/purchases.model";
 export class createOrderDto {
 
     productId: Product;
-    customerId: Customers;
+    customer: Customers;
     purchaseId: Purchase;
     quantity: number;
     orderPrice: number;

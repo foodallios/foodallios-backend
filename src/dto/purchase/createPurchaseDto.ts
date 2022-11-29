@@ -4,7 +4,7 @@ export class createPurchaseDto {
 
     customer: Customers;
     totalPrice: number;
-    description: string;
+    description?: string;
     isValid: boolean;
-    createdAt: Date;
+    createdAt?: Date;
 }
