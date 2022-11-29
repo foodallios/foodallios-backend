@@ -1,1 +1,2 @@
-INSERT INTO customer("userId", "firstName", "lastName", "address", "dateOfBirth", "createdBy", "createdAt") VALUES('53bfcac8-6825-4f1c-a724-b912387637bc', 'Trend', 'Malicius', '', '04/26/1925', 'admin', '11/15/2022');
+INSERT INTO customer("userId", "firstName", "lastName", "address", "dateOfBirth", "createdBy", "createdAt") VALUES('cec1bee8-0bf7-43ed-92db-d351afa664c5', 'Trend', 'Malicius', '', '04/26/1925', 'admin', '11/15/2022');
+INSERT INTO customer("userId", "firstName", "lastName", "address", "dateOfBirth", "createdBy", "createdAt") VALUES('f4e044f1-474c-48d9-b125-ec2236381eea', 'PAOK', 'OLE', '', '04/26/1926', 'admin', '11/15/2022');

@@ -1,2 +1,2 @@
-INSERT INTO shop_owner("userId", "createdBy", "createdAt") VALUES ('cca9cc10-8911-4691-96de-5d8182a7a8a0', 'admin', '10/31/2022');
-INSERT INTO shop_owner("userId", "createdBy", "createdAt") VALUES ('cca9cc10-8911-4691-96de-5d8182a7a8a0', 'admin', '10/31/2022');
+INSERT INTO shop_owner("userId", "createdBy", "createdAt") VALUES ('f412e1e2-a5b1-4e04-8c79-949942179b75', 'admin', '10/31/2022');
+INSERT INTO shop_owner("userId", "createdBy", "createdAt") VALUES ('f412e1e2-a5b1-4e04-8c79-949942179b75', 'admin', '10/31/2022');
