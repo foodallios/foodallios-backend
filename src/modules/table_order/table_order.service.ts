@@ -22,7 +22,7 @@ export class TableOrderService {
 
     createOrder(orderDetails: createOrderDto): Promise<any> {
         const new_order = this.orderRepository.insert({
-            customer: orderDetails.customerId,
+            customer: orderDetails.customer,
             product: orderDetails.productId,
             purchase: orderDetails.purchaseId,
             quantity: orderDetails.quantity,
