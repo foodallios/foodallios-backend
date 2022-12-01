@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { editOrderDto } from 'src/dto/table_orders/editOrderDto';
 import { Product } from 'src/models/products.model';
 import { Shop } from 'src/models/shops.model';
 import { Repository } from 'typeorm';
@@ -20,4 +21,7 @@ export class ProductsService {
         return this.productRepository.findOne({ where: { id: id }});
     }
 
+    async updateProduct(body: editOrderDto): Promise<Product | undefined> {
+        return this.productRepository.save(body)
+    }
 }
