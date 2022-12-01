@@ -1,10 +1,10 @@
 export class createCustomerDto {
 
-    userId: string;
+    user: string;
     firstName?: string = '';
     lastName?: string = '';
     address?: string = '';
     dateOfBirth?: Date;
-    createdBy: string = 'admin';
+    createdBy: string = '';
     createdAt: Date = new Date();
 }
