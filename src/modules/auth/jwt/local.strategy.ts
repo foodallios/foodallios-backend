@@ -14,7 +14,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         super();
     }
 
-    //Fix this. It is duplicating in both here and the service. Here put an if for calid user and pass to return the user.
     async validate(username: string, password: string): Promise<Users> {
 
         const validUser = await this.authService.validateUser(username);
