@@ -10,7 +10,7 @@ import { Shop } from './models/shops.model';
 import { ShopOwner } from './models/shopOwner.model';
 import { Customers } from './models/customers.model';
 import { Product } from './models/products.model';
-import { JwtService } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { UsersController } from './modules/users/users.controller';
 import { ShopsService } from './modules/shops/shops.service';
 import { ShopsController } from './modules/shops/shops.controller';
@@ -29,6 +29,7 @@ import { CustomersController } from './modules/customers/customers.controller';
 import { CustomersService } from './modules/customers/customers.service';
 import { QrController } from './modules/qr/qr.controller';
 import { QrService } from './modules/qr/qr.service';
+import { ShopOwnerModule } from './modules/shop_owner/shop_owner.module';
 
 @Module({
   imports: [
