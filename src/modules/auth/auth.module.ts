@@ -7,13 +7,20 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './jwt/constants';
 import { JwtStrategy } from './jwt/jwt.strategy';
 import { AuthController } from './auth.controller';
+import { CustomersModule } from '../customers/customers.module';
+import { ShopOwnerModule } from '../shop_owner/shop_owner.module';
 
 @Module({
     imports: [
         UsersModule,
+        CustomersModule,
+        ShopOwnerModule,
         PassportModule,
         JwtModule.register({
-            secret: jwtConstants.secret,
+            secret: process.env.ACCESS_SECRET,
+            signOptions: {
+                expiresIn: "2m",
+            }
         }),
     ],
     providers: [AuthService, LocalStrategy, JwtStrategy],
