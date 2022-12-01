@@ -8,9 +8,6 @@ export class ShopOwner extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column()
-    userId: string;
-
     @OneToOne(() => Users, { eager: true, cascade: true })
     @JoinColumn()
     user: Users;
