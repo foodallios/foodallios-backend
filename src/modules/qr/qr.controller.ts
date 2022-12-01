@@ -1,8 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { QrService } from './qr.service';
 import { Get } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 
-
+@UseGuards(JwtAuthGuard)
 @Controller('qr')
 export class QrController {
 

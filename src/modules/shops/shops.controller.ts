@@ -1,10 +1,12 @@
-import { Controller, Request } from '@nestjs/common';
+import { Controller, Request, UseGuards } from '@nestjs/common';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Param } from '@nestjs/common/decorators/http/route-params.decorator';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { Product } from 'src/models/products.model';
 import { Shop } from 'src/models/shops.model';
 import { ShopsService } from './shops.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('shop')
 export class ShopsController {
 

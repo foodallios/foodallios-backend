@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Param, Patch, Post, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Delete, UseGuards } from '@nestjs/common';
 import { createPurchaseDto } from 'src/dto/purchase/createPurchaseDto';
 import { ValidatePurchaseDto } from 'src/dto/purchase/validatePurchaseDto';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { Purchase } from 'src/models/purchases.model';
 import { PurchasesService } from './purchases.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('purchases')
 export class PurchasesController {
 
@@ -26,7 +28,6 @@ export class PurchasesController {
 
     @Post('new')
     async postPurchase(@Body() jsBody: createPurchaseDto) {
-        console.log("HELO")
         return this.purchaseService.postPurchase(jsBody);
     }
 
