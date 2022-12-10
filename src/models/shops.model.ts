@@ -30,6 +30,9 @@ export class Shop extends BaseEntity {
     wrkHours: string;
 
     @Column()
+    shopImgUrl?: string;
+
+    @Column()
     createdBy: string = 'admin';
 
     @Column()

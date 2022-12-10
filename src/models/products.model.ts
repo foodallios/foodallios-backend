@@ -28,6 +28,9 @@ export class Product extends BaseEntity {
     description: string;
 
     @Column()
+    productImgUrl?: string;
+
+    @Column()
     createdBy: string = 'admin';
 
     @Column()
